@@ -37,13 +37,13 @@ while (have_posts()) {
         </div>
 
         <?php
-        $relatedPrograms = get_field("related_programs");
+        $subjectsTaught = get_field("related_programs");
 
-        if ($relatedPrograms) {
+        if ($subjectsTaught) {
             echo '<hr class="section-break" />';
             echo '<h2 class="headline headline--medium">Related Program(s)</h2>';
             echo '<ul class="link-list min-list">';
-            foreach ($relatedPrograms as $program) { ?>
+            foreach ($subjectsTaught as $program) { ?>
 
                 <li>
                     <a href="<?php echo get_the_permalink($program); ?>">
