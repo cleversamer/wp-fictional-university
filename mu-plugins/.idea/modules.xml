@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/fictional-university-theme.iml" filepath="$PROJECT_DIR$/.idea/fictional-university-theme.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mu-plugins.iml" filepath="$PROJECT_DIR$/.idea/mu-plugins.iml" />
     </modules>
   </component>
 </project>
