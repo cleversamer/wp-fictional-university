@@ -3,40 +3,29 @@
 get_header();
 
 while (have_posts()) {
-    the_post(); ?>
+    the_post();
+    pageBanner();
+    ?>
 
-    <div class="page-banner">
-        <div class="page-banner__bg-image"
-            style="background-image: url(<?php echo get_theme_file_uri("images/ocean.jpg") ?>)"></div>
-        <div class="page-banner__content container container--narrow">
-            <h1 class="page-banner__title">
+<div class="container container--narrow page-section">
+    <div class="metabox metabox--position-up metabox--with-home-link">
+        <p>
+            <a class="metabox__blog-home-link" href="<?php echo get_post_type_archive_link("event"); ?>">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                Events Home
+            </a>
+
+            <span class="metabox__main">
                 <?php the_title(); ?>
-            </h1>
-            <div class="page-banner__intro">
-                <p>DON'T FORGET TO REPLACE ME LATER</p>
-            </div>
-        </div>
+            </span>
+        </p>
     </div>
 
-    <div class="container container--narrow page-section">
-        <div class="metabox metabox--position-up metabox--with-home-link">
-            <p>
-                <a class="metabox__blog-home-link" href="<?php echo get_post_type_archive_link("event"); ?>">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                    Events Home
-                </a>
+    <div class="generic-content">
+        <?php the_content(); ?>
+    </div>
 
-                <span class="metabox__main">
-                    <?php the_title(); ?>
-                </span>
-            </p>
-        </div>
-
-        <div class="generic-content">
-            <?php the_content(); ?>
-        </div>
-
-        <?php
+    <?php
         $subjectsTaught = get_field("related_programs");
 
         if ($subjectsTaught) {
@@ -45,21 +34,21 @@ while (have_posts()) {
             echo '<ul class="link-list min-list">';
             foreach ($subjectsTaught as $program) { ?>
 
-                <li>
-                    <a href="<?php echo get_the_permalink($program); ?>">
-                        <?php echo get_the_title($program); ?>
-                    </a>
-                </li>
-            <?php }
+    <li>
+        <a href="<?php echo get_the_permalink($program); ?>">
+            <?php echo get_the_title($program); ?>
+        </a>
+    </li>
+    <?php }
             echo "</ul>";
             ?>
 
 
-        <?php } ?>
+    <?php } ?>
 
-    </div>
+</div>
 
-    <?php
+<?php
 }
 get_footer();
 ?>
