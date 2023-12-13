@@ -2,7 +2,9 @@
 
 <div class="page-banner">
     <div class="page-banner__bg-image"
-        style="background-image: url(<?php echo get_theme_file_uri("/images/library-hero.jpg") ?>)"></div>
+        style="background-image: url(<?php echo get_theme_file_uri("/images/library-hero.jpg") ?>)">
+    </div>
+
     <div class="page-banner__content container t-center c-white">
         <h1 class="headline headline--large">Welcome!</h1>
 
@@ -10,8 +12,8 @@
             We think you'll like it here.
         </h2>
 
-        <h3 class="headline headline--small">Why don't you check out the <strong>major</strong> you&rsquo;re interested
-            in?
+        <h3 class="headline headline--small">
+            Why don't you check out the <strong>major</strong> you&rsquo;re interested in?
         </h3>
 
         <a href="<?php echo get_post_type_archive_link("program"); ?>" class="btn btn--large btn--blue">
@@ -28,7 +30,7 @@
             <?php
             $today = date("Ymd");
 
-            $homePageEvents = new WP_Query(array(
+            $upcomingProgramEvents = new WP_Query(array(
                 "posts_per_page" => 2,
                 "post_type" => "event",
                 "meta_key" => "event_date",
@@ -44,19 +46,25 @@
                 )
             ));
 
-            while ($homePageEvents->have_posts()) {
-                $homePageEvents->the_post();
-                get_template_part("template-parts/content", get_post_type());
+            while ($upcomingProgramEvents->have_posts()) {
+                $upcomingProgramEvents->the_post();
+                get_template_part("template-parts/content-event");
             }
             ?>
 
-            <p class="t-center no-margin"><a href="<?php echo site_url("/events") ?>" class="btn btn--blue">View All
-                    Events</a></p>
+            <p class="t-center no-margin">
+                <a href="<?php echo site_url("/events") ?>" class="btn btn--blue">
+                    View All Events
+                </a>
+            </p>
         </div>
     </div>
+
     <div class="full-width-split__two">
         <div class="full-width-split__inner">
-            <h2 class="headline headline--small-plus t-center">From Our Blogs</h2>
+            <h2 class="headline headline--small-plus t-center">
+                From Our Blogs
+            </h2>
 
             <?php
             $homePagePosts = new WP_Query(array(
@@ -66,26 +74,26 @@
             while ($homePagePosts->have_posts()) {
                 $homePagePosts->the_post(); ?>
 
-            <div class="event-summary">
-                <a class="event-summary__date event-summary__date--beige t-center" href="<?php the_permalink(); ?>">
-                    <span class="event-summary__month">
-                        <?php the_time("M") ?>
-                    </span>
+                <div class="event-summary">
+                    <a class="event-summary__date event-summary__date--beige t-center" href="<?php the_permalink(); ?>">
+                        <span class="event-summary__month">
+                            <?php the_time("M"); ?>
+                        </span>
 
-                    <span class="event-summary__day">
-                        <?php the_time("d") ?>
-                    </span>
-                </a>
+                        <span class="event-summary__day">
+                            <?php the_time("d"); ?>
+                        </span>
+                    </a>
 
-                <div class="event-summary__content">
-                    <h5 class="event-summary__title headline headline--tiny">
-                        <a href="<?php the_permalink(); ?>">
-                            <?php the_title(); ?>
-                        </a>
-                    </h5>
+                    <div class="event-summary__content">
+                        <h5 class="event-summary__title headline headline--tiny">
+                            <a href="<?php the_permalink(); ?>">
+                                <?php the_title(); ?>
+                            </a>
+                        </h5>
 
-                    <p>
-                        <?php
+                        <p>
+                            <?php
                             if (has_excerpt()) {
                                 echo get_the_excerpt();
                             } else {
@@ -93,17 +101,19 @@
                             }
                             ?>
 
-                        <a href="<?php the_permalink(); ?>" class="nu gray">Read more</a>
-                    </p>
+                            <a href="<?php the_permalink(); ?>" class="nu gray">
+                                Read more
+                            </a>
+                        </p>
+                    </div>
                 </div>
-            </div>
 
             <?php }
             wp_reset_postdata();
             ?>
 
             <p class="t-center no-margin">
-                <a href="<?php echo site_url("/blog") ?>" class="btn btn--yellow">
+                <a href="<?php echo site_url("/blog"); ?>" class="btn btn--yellow">
                     View All Blog Posts
                 </a>
             </p>
@@ -124,6 +134,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="hero-slider__slide"
                 style="background-image: url(<?php echo get_theme_file_uri("images/apples.jpg") ?>)">
                 <div class="hero-slider__interior container">
@@ -134,6 +145,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="hero-slider__slide"
                 style="background-image: url(<?php echo get_theme_file_uri("images/bread.jpg") ?>)">
                 <div class="hero-slider__interior container">
@@ -145,6 +157,7 @@
                 </div>
             </div>
         </div>
+
         <div class="slider__bullets glide__bullets" data-glide-el="controls[nav]"></div>
     </div>
 </div>

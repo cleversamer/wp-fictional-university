@@ -32,7 +32,7 @@ pageBanner(array(
     }
 
     echo paginate_links(array(
-        "total" => $pastEvents->max_num_pages,
+        "total" => $pastEvents->max_num_pages
     ));
     ?>
 </div>
