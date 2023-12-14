@@ -67,8 +67,13 @@ class Search {
       const combinedResults = posts[0].concat(pages[0]);
 
       const items = combinedResults
-        .map((post) => {
-          return `<li><a href="${post.link}">${post.title.rendered}</a></li>`;
+        .map((item) => {
+          return `
+          <li>
+            <a href="${item.link}">${item.title.rendered}</a>
+            ${item.type === "post" ? `by ${item.authorName}` : ""}
+          </li>
+          `.trim();
         })
         .join("");
 

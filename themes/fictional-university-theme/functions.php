@@ -1,5 +1,16 @@
 <?php
 
+function university_custom_rest()
+{
+    register_rest_field("post", "authorName", array(
+        "get_callback" => function () {
+            return get_the_author();
+        }
+    ));
+}
+
+add_action("rest_api_init", "university_custom_rest");
+
 function pageBanner($args = null)
 {
 
@@ -22,24 +33,24 @@ function pageBanner($args = null)
 
     ?>
 
-<div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url(<?php echo $args["photo"]; ?>)">
-    </div>
+    <div class="page-banner">
+        <div class="page-banner__bg-image" style="background-image: url(<?php echo $args["photo"]; ?>)">
+        </div>
 
-    <div class="page-banner__content container container--narrow">
-        <h1 class="page-banner__title">
-            <?php echo $args["title"]; ?>
-        </h1>
+        <div class="page-banner__content container container--narrow">
+            <h1 class="page-banner__title">
+                <?php echo $args["title"]; ?>
+            </h1>
 
-        <div class="page-banner__intro">
-            <p>
-                <?php echo $args["subtitle"]; ?>
-            </p>
+            <div class="page-banner__intro">
+                <p>
+                    <?php echo $args["subtitle"]; ?>
+                </p>
+            </div>
         </div>
     </div>
-</div>
 
-<?php
+    <?php
 }
 
 function university_files()
