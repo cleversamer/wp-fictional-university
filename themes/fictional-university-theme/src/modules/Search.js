@@ -2,6 +2,8 @@ import $ from "jquery";
 
 class Search {
   constructor() {
+    this.addSearchHTML();
+
     this.openButton = $(".js-search-trigger");
     this.closeButton = $(".search-overlay__close");
     this.searchOverlay = $(".search-overlay");
@@ -25,7 +27,7 @@ class Search {
   }
 
   typingLogic() {
-    const currentValue = this.searchField.val();
+    const currentValue = this.searchField.val().trim();
 
     if (currentValue === this.previousValue) {
       return;
@@ -45,13 +47,51 @@ class Search {
       this.isSpinnerVisible = true;
     }
 
-    this.typingTimer = setTimeout(this.getResults.bind(this), 2000);
+    this.typingTimer = setTimeout(this.getResults.bind(this), 750);
     this.previousValue = currentValue;
   }
 
   getResults() {
-    this.isSpinnerVisible = false;
-    this.resultsElement.html("Imagine real search results here.");
+    // this.isSpinnerVisible = false;
+    // this.resultsElement.html("Imagine real search results here.");
+
+    const searchValue = this.searchField.val().trim();
+    const postsRequest = $.getJSON(
+      `${universityData.root_url}/wp-json/wp/v2/posts?search=${searchValue}`
+    );
+    const pagesRequest = $.getJSON(
+      `${universityData.root_url}/wp-json/wp/v2/pages?search=${searchValue}`
+    );
+
+    const onDone = (posts, pages) => {
+      const combinedResults = posts[0].concat(pages[0]);
+
+      const items = combinedResults
+        .map((post) => {
+          return `<li><a href="${post.link}">${post.title.rendered}</a></li>`;
+        })
+        .join("");
+
+      const html = `
+          <h2 class="search-overlay__section-title">General Information</h2>
+          ${
+            combinedResults.length
+              ? `<ul class="link-list min-list">${items}</ul>`
+              : "<p>No general information matches your search.</p>"
+          }
+        `;
+
+      this.resultsElement.html(html);
+      this.isSpinnerVisible = false;
+    };
+
+    const onError = () => {
+      this.resultsElement.html(
+        "<p>Unexpected error happened, please try again later.</p>"
+      );
+    };
+
+    $.when(postsRequest, pagesRequest).then(onDone, onError);
   }
 
   keyPressDispatcher(event) {
@@ -71,6 +111,9 @@ class Search {
   openOverlay() {
     this.searchOverlay.addClass("search-overlay--active");
     this.bodyElement.addClass("body-no-scroll");
+    this.searchField.val("");
+    this.resultsElement.html("");
+    setTimeout(() => this.searchField.focus(), 301);
     this.isOverlayOpen = true;
   }
 
@@ -78,6 +121,24 @@ class Search {
     this.searchOverlay.removeClass("search-overlay--active");
     this.bodyElement.removeClass("body-no-scroll");
     this.isOverlayOpen = false;
+  }
+
+  addSearchHTML() {
+    $("body").append(`
+      <div class="search-overlay">
+        <div class="search-overlay__top">
+            <div class="container">
+                <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
+                <input type="text" class="search-term" placeholder="What are you looking for?" id="search-term" autocomplete="off" />
+                <i class="fa fa-window-close search-overlay__close" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        <div class="container">
+            <div id="search-overlay__results"></div>
+        </div>
+    </div>
+    `);
   }
 }
 
