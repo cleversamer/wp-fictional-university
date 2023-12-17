@@ -53,7 +53,7 @@
             ?>
 
             <p class="t-center no-margin">
-                <a href="<?php echo site_url("/events") ?>" class="btn btn--blue">
+                <a href="<?php echo esc_url(site_url("/events")); ?>" class="btn btn--blue">
                     View All Events
                 </a>
             </p>
@@ -113,7 +113,7 @@
             ?>
 
             <p class="t-center no-margin">
-                <a href="<?php echo site_url("/blog"); ?>" class="btn btn--yellow">
+                <a href="<?php echo esc_url(site_url("/blog")); ?>" class="btn btn--yellow">
                     View All Blog Posts
                 </a>
             </p>

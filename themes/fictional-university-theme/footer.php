@@ -3,7 +3,7 @@
         <div class="group">
             <div class="site-footer__col-one">
                 <h1 class="school-logo-text school-logo-text--alt-color">
-                    <a href="<?php echo site_url("/"); ?>">
+                    <a href="<?php echo esc_url(site_url("/")); ?>">
                         <strong>Fictional</strong> University
                     </a>
                 </h1>
@@ -21,15 +21,15 @@
                     <nav class="nav-list">
                         <ul>
                             <li>
-                                <a href="<?php echo site_url("/about-us"); ?>">About Us</a>
+                                <a href="<?php echo esc_url(site_url("/about-us")); ?>">About Us</a>
                             </li>
 
                             <li>
-                                <a href="<?php echo site_url("/programs"); ?>">Programs</a>
+                                <a href="<?php echo esc_url(site_url("/programs")); ?>">Programs</a>
                             </li>
 
                             <li>
-                                <a href="<?php echo site_url("/events"); ?>">Events</a>
+                                <a href="<?php echo esc_url(site_url("/events")); ?>">Events</a>
                             </li>
 
                             <li>
@@ -48,7 +48,7 @@
                             </li>
 
                             <li>
-                                <a href="<?php echo site_url("/privacy-policy"); ?>">Privacy</a>
+                                <a href="<?php echo esc_url(site_url("/privacy-policy")); ?>">Privacy</a>
                             </li>
 
                             <li>

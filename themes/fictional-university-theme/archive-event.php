@@ -20,7 +20,7 @@ pageBanner(array(
 
     <p>
         Looking for a recap of past events?
-        <a href="<?php echo site_url("/past-events"); ?>">
+        <a href="<?php echo esc_url(site_url("/past-events")); ?>">
             Checkout our past events archive.
         </a>
     </p>

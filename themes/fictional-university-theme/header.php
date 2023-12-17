@@ -13,7 +13,7 @@
     <header class="site-header">
         <div class="container">
             <h1 class="school-logo-text float-left">
-                <a href="<?php echo site_url("/"); ?>">
+                <a href="<?php echo esc_url(site_url("/")); ?>">
                     <strong>Fictional</strong> University
                 </a>
             </h1>
@@ -31,7 +31,7 @@
                             echo 'class="current-menu-item"';
                         }
                         ?>>
-                            <a href="<?php echo site_url("/about-us"); ?>">About Us</a>
+                            <a href="<?php echo esc_url(site_url("/about-us")); ?>">About Us</a>
                         </li>
 
                         <li <?php if (get_post_type() == "program" or is_page("programs")) {
@@ -59,7 +59,7 @@
                             echo 'class="current-menu-item"';
                         }
                         ?>>
-                            <a href="<?php echo site_url("/blog"); ?>">Blog</a>
+                            <a href="<?php echo esc_url(site_url("/blog")); ?>">Blog</a>
                         </li>
                     </ul>
                 </nav>
