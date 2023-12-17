@@ -39,7 +39,7 @@ while (have_posts()) {
         </div>
 
         <?php
-        $relatedPrograms = new WP_Query(array(
+        $relatedProfessors = new WP_Query(array(
             "posts_per_page" => -1,
             "post_type" => "program",
             "orderby" => "title",
@@ -53,13 +53,13 @@ while (have_posts()) {
             )
         ));
 
-        if ($relatedPrograms->have_posts()) {
+        if ($relatedProfessors->have_posts()) {
             echo '<hr class="section-break" />';
             echo '<h2 class="headline headline--medium">Programs available at this campus</h2>';
 
             echo '<ul class="min-list link-list">';
-            while ($relatedPrograms->have_posts()) {
-                $relatedPrograms->the_post(); ?>
+            while ($relatedProfessors->have_posts()) {
+                $relatedProfessors->the_post(); ?>
 
                 <li>
                     <a href="<?php the_permalink(); ?>">

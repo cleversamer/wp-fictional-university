@@ -21,11 +21,11 @@ while (have_posts()) {
         </div>
 
         <div class="generic-content">
-            <?php the_content(); ?>
+            <?php the_field("main_body_content"); ?>
         </div>
 
         <?php
-        $relatedPrograms = new WP_Query(array(
+        $relatedProfessors = new WP_Query(array(
             "posts_per_page" => -1,
             "post_type" => "professor",
             "orderby" => "title",
@@ -39,13 +39,13 @@ while (have_posts()) {
             )
         ));
 
-        if ($relatedPrograms->have_posts()) {
+        if ($relatedProfessors->have_posts()) {
             echo '<hr class="section-break" />';
             echo '<h2 class="headline headline--medium">' . get_the_title() . " Professors</h2>";
             echo '<ul class="professor-cards">';
 
-            while ($relatedPrograms->have_posts()) {
-                $relatedPrograms->the_post(); ?>
+            while ($relatedProfessors->have_posts()) {
+                $relatedProfessors->the_post(); ?>
 
                 <li class="professor-card__list-item">
                     <a class="professor-card" href="<?php the_permalink(); ?>">
