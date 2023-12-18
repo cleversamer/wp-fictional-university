@@ -6,9 +6,10 @@ class MyNotes {
   }
 
   events() {
-    $(".delete-note").on("click", this.deleteNote.bind(this));
-    $(".edit-note").on("click", this.editNote.bind(this));
-    $(".update-note").on("click", this.updateNote.bind(this));
+    $("#my-notes").on("click", ".delete-note", this.deleteNote.bind(this));
+    $("#my-notes").on("click", ".edit-note", this.editNote.bind(this));
+    $("#my-notes").on("click", ".update-note", this.updateNote.bind(this));
+    $(".submit-note").on("click", this.createNote.bind(this));
   }
 
   deleteNote(event) {
@@ -99,6 +100,59 @@ class MyNotes {
       },
       error: () => {
         alert("Error updating note.");
+      },
+    });
+  }
+
+  createNote() {
+    const titleField = $(".new-note-title");
+    const bodyField = $(".new-note-body");
+    const requestURL = `${universityData.root_url}/wp-json/wp/v2/note`;
+
+    const newNote = {
+      title: titleField.val(),
+      content: bodyField.val(),
+      status: "publish",
+    };
+
+    $.ajax({
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader("X-WP-Nonce", universityData.nonce);
+      },
+      url: requestURL,
+      type: "POST",
+      data: newNote,
+      success: (response) => {
+        titleField.val("");
+        bodyField.val("");
+
+        const newNoteHTML = `
+        <li data-id="${response.id}">
+            <input readonly class="note-title-field" type="text" value="${response.title.raw}" />
+
+            <span class="edit-note">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <span>Edit</span>
+            </span>
+
+            <span class="delete-note">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <span>Delete</span>
+            </span>
+
+            <textarea readonly class="note-body-field">${response.content.raw}</textarea>
+
+            <span class="update-note btn btn--blue btn--small">
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                <span>Save</span>
+            </span>
+        </li>
+        `;
+
+        $(newNoteHTML).prependTo("#my-notes").hide().slideDown();
+      },
+      error: () => {
+        alert("Error creating note.");
       },
     });
   }
