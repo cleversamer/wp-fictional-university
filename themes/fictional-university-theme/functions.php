@@ -35,24 +35,24 @@ function pageBanner($args = null)
 
     ?>
 
-<div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url(<?php echo $args["photo"]; ?>)">
-    </div>
+    <div class="page-banner">
+        <div class="page-banner__bg-image" style="background-image: url(<?php echo $args["photo"]; ?>)">
+        </div>
 
-    <div class="page-banner__content container container--narrow">
-        <h1 class="page-banner__title">
-            <?php echo $args["title"]; ?>
-        </h1>
+        <div class="page-banner__content container container--narrow">
+            <h1 class="page-banner__title">
+                <?php echo $args["title"]; ?>
+            </h1>
 
-        <div class="page-banner__intro">
-            <p>
-                <?php echo $args["subtitle"]; ?>
-            </p>
+            <div class="page-banner__intro">
+                <p>
+                    <?php echo $args["subtitle"]; ?>
+                </p>
+            </div>
         </div>
     </div>
-</div>
 
-<?php
+    <?php
 }
 
 function university_files()
@@ -66,7 +66,8 @@ function university_files()
     wp_enqueue_style("university_extra_styles", get_theme_file_uri("/build/index.css"));
 
     wp_localize_script("main-university-js", "universityData", array(
-        "root_url" => esc_url(get_site_url())
+        "root_url" => esc_url(get_site_url()),
+        "nonce" => wp_create_nonce("wp_rest")
     ));
 }
 
