@@ -16,7 +16,7 @@
             Why don't you check out the <strong>major</strong> you&rsquo;re interested in?
         </h3>
 
-        <a href="<?php echo get_post_type_archive_link("program"); ?>" class="btn btn--large btn--blue">
+        <a href="<?php echo esc_url(get_post_type_archive_link("program")); ?>" class="btn btn--large btn--blue">
             Find Your Major
         </a>
     </div>
@@ -53,7 +53,7 @@
             ?>
 
             <p class="t-center no-margin">
-                <a href="<?php echo esc_url(site_url("/events")); ?>" class="btn btn--blue">
+                <a href="<?php echo esc_url(get_post_type_archive_link("event")); ?>" class="btn btn--blue">
                     View All Events
                 </a>
             </p>
@@ -75,7 +75,8 @@
                 $homePagePosts->the_post(); ?>
 
                 <div class="event-summary">
-                    <a class="event-summary__date event-summary__date--beige t-center" href="<?php the_permalink(); ?>">
+                    <a class="event-summary__date event-summary__date--beige t-center"
+                        href="<?php echo esc_url(get_the_permalink()); ?>">
                         <span class="event-summary__month">
                             <?php the_time("M"); ?>
                         </span>
@@ -87,7 +88,7 @@
 
                     <div class="event-summary__content">
                         <h5 class="event-summary__title headline headline--tiny">
-                            <a href="<?php the_permalink(); ?>">
+                            <a href="<?php echo esc_url(get_the_permalink()); ?>">
                                 <?php the_title(); ?>
                             </a>
                         </h5>
@@ -101,7 +102,7 @@
                             }
                             ?>
 
-                            <a href="<?php the_permalink(); ?>" class="nu gray">
+                            <a href="<?php echo esc_url(get_the_permalink()); ?>" class="nu gray">
                                 Read more
                             </a>
                         </p>
@@ -113,7 +114,7 @@
             ?>
 
             <p class="t-center no-margin">
-                <a href="<?php echo esc_url(site_url("/blog")); ?>" class="btn btn--yellow">
+                <a href="<?php echo esc_url(get_post_type_archive_link("post")); ?>" class="btn btn--yellow">
                     View All Blog Posts
                 </a>
             </p>

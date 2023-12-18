@@ -20,16 +20,16 @@ while (have_posts()) {
         </div>
 
         <?php
-        $relatedProfessors = get_field("related_programs");
+        $relatedPrograms = get_field("related_programs");
 
-        if ($relatedProfessors) {
+        if ($relatedPrograms) {
             echo '<hr class="section-break" />';
             echo '<h2 class="headline headline--medium">Subject(s) Taught</h2>';
             echo '<ul class="link-list min-list">';
 
-            foreach ($relatedProfessors as $program) { ?>
+            foreach ($relatedPrograms as $program) { ?>
                 <li>
-                    <a href="<?php echo get_the_permalink($program); ?>">
+                    <a href="<?php echo esc_url(get_the_permalink($program)); ?>">
                         <?php echo get_the_title($program); ?>
                     </a>
                 </li>

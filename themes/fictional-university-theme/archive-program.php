@@ -13,7 +13,7 @@ pageBanner(array(
             the_post(); ?>
 
             <li>
-                <a href="<?php the_permalink(); ?>">
+                <a href="<?php echo esc_url(get_the_permalink()); ?>">
                     <?php the_title(); ?>
                 </a>
             </li>

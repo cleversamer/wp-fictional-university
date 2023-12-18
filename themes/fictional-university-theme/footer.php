@@ -25,15 +25,15 @@
                             </li>
 
                             <li>
-                                <a href="<?php echo esc_url(site_url("/programs")); ?>">Programs</a>
+                                <a href="<?php echo esc_url(get_post_type_archive_link("program")); ?>">Programs</a>
                             </li>
 
                             <li>
-                                <a href="<?php echo esc_url(site_url("/events")); ?>">Events</a>
+                                <a href="<?php echo esc_url(get_post_type_archive_link("event")); ?>">Events</a>
                             </li>
 
                             <li>
-                                <a href="#">Campuses</a>
+                                <a href="<?php echo esc_url(get_post_type_archive_link("campus")); ?>">Campuses</a>
                             </li>
                         </ul>
                     </nav>

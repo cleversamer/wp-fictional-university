@@ -33,7 +33,7 @@ function universitySearchResults($data)
         if ($postType == "post" or $postType == "page") {
             array_push($results["generalInfo"], array(
                 "title" => get_the_title(),
-                "permalink" => get_the_permalink(),
+                "permalink" => esc_url(get_the_permalink()),
                 "postType" => get_post_type(),
                 "authorName" => get_the_author()
             ));
@@ -42,7 +42,7 @@ function universitySearchResults($data)
         if ($postType == "professor") {
             array_push($results["professors"], array(
                 "title" => get_the_title(),
-                "permalink" => get_the_permalink(),
+                "permalink" => esc_url(get_the_permalink()),
                 "image" => get_the_post_thumbnail_url(0, "professorLandscape")
             ));
         }
@@ -54,7 +54,7 @@ function universitySearchResults($data)
                 foreach ($relatedCampuses as $campus) {
                     array_push($results["campuses"], array(
                         "title" => get_the_title($campus),
-                        "permalink" => get_the_permalink($campus)
+                        "permalink" => esc_url(get_the_permalink($campus))
                     ));
                 }
             }
@@ -62,14 +62,14 @@ function universitySearchResults($data)
             array_push($results["programs"], array(
                 "id" => get_the_ID(),
                 "title" => get_the_title(),
-                "permalink" => get_the_permalink()
+                "permalink" => esc_url(get_the_permalink())
             ));
         }
 
         if ($postType == "campus") {
             array_push($results["campuses"], array(
                 "title" => get_the_title(),
-                "permalink" => get_the_permalink()
+                "permalink" => esc_url(get_the_permalink())
             ));
         }
 
@@ -85,7 +85,7 @@ function universitySearchResults($data)
 
             array_push($results["events"], array(
                 "title" => get_the_title(),
-                "permalink" => get_the_permalink(),
+                "permalink" => esc_url(get_the_permalink()),
                 "month" => $eventDate->format("M"),
                 "day" => $eventDate->format("d"),
                 "description" => $description
@@ -117,7 +117,7 @@ function universitySearchResults($data)
             if ($postType == "professor") {
                 array_push($results["professors"], array(
                     "title" => get_the_title(),
-                    "permalink" => get_the_permalink(),
+                    "permalink" => esc_url(get_the_permalink()),
                     "image" => get_the_post_thumbnail_url(0, "professorLandscape")
                 ));
             }
@@ -134,7 +134,7 @@ function universitySearchResults($data)
 
                 array_push($results["events"], array(
                     "title" => get_the_title(),
-                    "permalink" => get_the_permalink(),
+                    "permalink" => esc_url(get_the_permalink()),
                     "month" => $eventDate->format("M"),
                     "day" => $eventDate->format("d"),
                     "description" => $description

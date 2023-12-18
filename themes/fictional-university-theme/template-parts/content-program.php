@@ -1,6 +1,6 @@
 <div class="post-item">
     <h2 class="headline headline--medium headline--post-title">
-        <a href="<?php the_permalink(); ?>">
+        <a href="<?php echo esc_url(get_the_permalink()); ?>">
             <?php the_title(); ?>
         </a>
     </h2>
@@ -9,7 +9,7 @@
         <?php the_excerpt(); ?>
 
         <p>
-            <a class="btn btn--blue" href="<?php the_permalink(); ?>">
+            <a class="btn btn--blue" href="<?php echo esc_url(get_the_permalink()); ?>">
                 View program &raquo;
             </a>
         </p>

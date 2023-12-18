@@ -9,7 +9,7 @@ while (have_posts()) {
     <div class="container container--narrow page-section">
         <div class="metabox metabox--position-up metabox--with-home-link">
             <p>
-                <a class="metabox__blog-home-link" href="<?php echo get_post_type_archive_link("campus"); ?>">
+                <a class="metabox__blog-home-link" href="<?php echo esc_url(get_post_type_archive_link("campus")); ?>">
                     <i class=" fa fa-home" aria-hidden="true"></i>
                     All Campuses
                 </a>
@@ -39,7 +39,7 @@ while (have_posts()) {
         </div>
 
         <?php
-        $relatedProfessors = new WP_Query(array(
+        $relatedPrograms = new WP_Query(array(
             "posts_per_page" => -1,
             "post_type" => "program",
             "orderby" => "title",
@@ -53,16 +53,16 @@ while (have_posts()) {
             )
         ));
 
-        if ($relatedProfessors->have_posts()) {
+        if ($relatedPrograms->have_posts()) {
             echo '<hr class="section-break" />';
             echo '<h2 class="headline headline--medium">Programs available at this campus</h2>';
 
             echo '<ul class="min-list link-list">';
-            while ($relatedProfessors->have_posts()) {
-                $relatedProfessors->the_post(); ?>
+            while ($relatedPrograms->have_posts()) {
+                $relatedPrograms->the_post(); ?>
 
                 <li>
-                    <a href="<?php the_permalink(); ?>">
+                    <a href="<?php echo esc_url(get_the_permalink()); ?>">
                         <?php the_title(); ?>
                     </a>
                 </li>
