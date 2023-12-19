@@ -112,7 +112,6 @@ class MyNotes {
     const newNote = {
       title: titleField.val(),
       content: bodyField.val(),
-      status: "publish",
     };
 
     $.ajax({
@@ -151,8 +150,8 @@ class MyNotes {
 
         $(newNoteHTML).prependTo("#my-notes").hide().slideDown();
       },
-      error: () => {
-        alert("Error creating note.");
+      error: (response) => {
+        alert(response.responseJSON.message);
       },
     });
   }
