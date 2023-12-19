@@ -23,11 +23,20 @@ class MyNotes {
       },
       url: requestURL,
       type: "DELETE",
-      success: () => {
+      success: (response) => {
         targetNote.slideUp();
+
+        if (response.userNoteCount < 5) {
+          $(".note-limit-message").removeClass("active");
+        }
       },
       error: () => {
-        alert("Error deleting note.");
+        const errMsg =
+          response?.responseJSON?.message ||
+          response?.responseText ||
+          "Error deleting note.";
+
+        alert(errMsg);
       },
     });
   }
@@ -99,15 +108,26 @@ class MyNotes {
         this.makeNoteReadonly(targetNote);
       },
       error: () => {
-        alert("Error updating note.");
+        const errMsg =
+          response?.responseJSON?.message ||
+          response?.responseText ||
+          "Error updating note.";
+
+        alert(errMsg);
       },
     });
   }
 
   createNote() {
+    $(".note-limit-message").removeClass("active");
+
     const titleField = $(".new-note-title");
     const bodyField = $(".new-note-body");
     const requestURL = `${universityData.root_url}/wp-json/wp/v2/note`;
+
+    if (!titleField.val() || !bodyField.val()) {
+      return;
+    }
 
     const newNote = {
       title: titleField.val(),
@@ -151,7 +171,16 @@ class MyNotes {
         $(newNoteHTML).prependTo("#my-notes").hide().slideDown();
       },
       error: (response) => {
-        alert(response.responseJSON.message);
+        const errMsg =
+          response?.responseJSON?.message ||
+          response?.responseText ||
+          "Error creating note.";
+
+        if (errMsg === "You have reached your note limit.") {
+          $(".note-limit-message").addClass("active");
+        } else {
+          alert(errMsg);
+        }
       },
     });
   }
