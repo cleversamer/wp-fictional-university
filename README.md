@@ -41,7 +41,7 @@ Fictional University is licensed under the [License Name] License. See [LICENSE]
 
 ## Support
 
-If you encounter any issues or have questions, feel free to [open an issue](https://github.com/cleversamerr/wp-fictional-university/issues) or contact [Samer Alsaadawi](thedev.samer@email.com).
+If you encounter any issues or have questions, feel free to [open an issue](https://github.com/cleversamerr/wp-fictional-university/issues) or contact [Samer Alsaadawi](mailto:thedev.samer@email.com).
 
 ## Acknowledgments
 
