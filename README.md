@@ -37,7 +37,7 @@ If you'd like to contribute to this project, follow these steps:
 
 ### License
 
-Fictional University is licensed under the [License Name] License. See [LICENSE](blob:https://github.com/7b32a60b-c301-460b-9090-22dfaf95b8bd) for more information.
+Fictional University is licensed under the MIT License. See [LICENSE](https://raw.githubusercontent.com/cleversamerr/wp-fictional-university/main/LICENSE) for more information.
 
 ## Support
 
