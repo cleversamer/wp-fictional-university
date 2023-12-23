@@ -25,6 +25,15 @@ Make sure you have the following installed:
 - Use WordPress admin interface for content management.
 - Utilize the REST API endpoints (`/wp-json/wp/v2/`) to fetch content and integrate it into your frontend application.
 
+### Plugins Used
+
+This project utilizes the following WordPress plugins:
+
+- **Advanced Custom Fields (ACF)** - [Plugin Link](https://wordpress.org/plugins/advanced-custom-fields/)
+- **Manual Image Crop** - [Plugin Link](https://wordpress.org/plugins/manual-image-crop/)
+- **Members** - [Plugin Link](https://wordpress.org/plugins/members/)
+- **Regenerate Thumbnails** - [Plugin Link](https://wordpress.org/plugins/regenerate-thumbnails/)
+
 ### Contributing
 
 If you'd like to contribute to this project, follow these steps:
